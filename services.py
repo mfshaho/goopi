@@ -1,16 +1,21 @@
 import requests
 
 from GoogleNews import GoogleNews
+
 from bs4 import BeautifulSoup
 
 
-def gnews(q):
+def gnews(query, lang, region, period):
 
-    googlenews = GoogleNews(lang="ar", region="IQ")
+    googlenews = GoogleNews()
 
-    googlenews.set_lang("ar")
+    googlenews.set_lang(lang)
     googlenews.set_period("7d")
-    googlenews.get_news(f"{str(q)}", True)
+    # googlenews.set_encode("utf-8")
+
+    googlenews.get_news(f"{query}")
+
+    # googlenews.enableException(True)
 
     result = googlenews.results(sort=True)
 
@@ -20,7 +25,7 @@ def gnews(q):
 from goose3 import Goose
 
 
-def goose(gnews_url):
+def goose(gnews_url: str):
     try:
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -29,7 +34,7 @@ def goose(gnews_url):
         }
         cookies = {"CONSENT": "YES+cb.20220419-08-p0.cs+FX+111"}
         r = requests.get(
-            (gnews_url if gnews_url.startswith("http") else f"https://{gnews_url}"),
+            gnews_url if gnews_url.startswith("http") else f"https://{gnews_url}",
             headers=headers,
             cookies=cookies,
         )
