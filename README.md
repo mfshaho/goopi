@@ -13,7 +13,7 @@ This endpoint allows you to retrieve the newest top news related to a specific s
 
 ### Example
 
-> **GET** /gnews?q=technology
+> **GET** /gnews?q=البرلمان العراقي
 
 **Response:**
 
@@ -42,13 +42,13 @@ This endpoint extracts data from a given Google News URL.
 ### Request
 
 - **Method:** `GET`
-- **URL:** `/extractor`
+- **URL:** `/goose`
 - **Query Parameters:**
-  - `initial_url`: (required) The URL of the Google News article to extract data from.
+  - `gnews_url`: (required) The URL of the Google News article to extract data from.
 
 ### Example
 
-> **GET** /extractor?initial_url=https://news.google.com/articles/article123
+> **GET** /goose?gnews_url=news.google.com/articles/article123
 
 **Response:**
 
