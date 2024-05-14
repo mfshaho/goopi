@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-app = FastAPI(__name__)
+app = FastAPI()
 
 
 @app.get("/")
-def root():
+async def root():
     return "goopi is running"
